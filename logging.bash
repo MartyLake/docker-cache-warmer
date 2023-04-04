@@ -1,16 +1,18 @@
 #!/usr/bin/env bash
 
-debug() {
+function debug {
   if [[ ! -z $DEBUG ]]; then
     MSG="DEBUG $@"
     echo $MSG | tee -a /job.log
   fi
 }
+export -f debug
 
-info() {
+function info {
   MSG="$@"
   echo $MSG | tee -a /job.log
 }
+export -f info
 
 debug "Debugging is enabled $(date)"
 
