@@ -7,7 +7,7 @@ cat /dev/null >/job.log
 
 function warm_host {
   debug "Warming host $1"
-  echo "$ASSET_PATHS" | sed 's/^/$1/' | xargs -n1 warm_file
+  echo "$ASSET_PATHS" | sed "s/^/$1/" | xargs -n1 warm_file
 }
 export -f warm_host
 
