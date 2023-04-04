@@ -19,7 +19,7 @@ export -f warm_file
 
 info "Started executing at $(date)"
 
-ASSET_PATHS=$(curl -a 'cache warmer' -ksl $ASSET_PATH_MANIFEST_URL)
+export ASSET_PATHS=$(curl -a 'cache warmer' -ksl $ASSET_PATH_MANIFEST_URL)
 HOSTS_LIST=$($HOSTS_COMMAND)
 echo $HOSTS_LIST | xargs -n 1 -I {} bash -c 'warm_host'
 
