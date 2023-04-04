@@ -7,7 +7,7 @@ cat /dev/null >/job.log
 
 function warm_host {
   debug "Warming host $1"
-  echo "$ASSET_PATHS" | sed "s/^/$1/" | xargs -n1 warm_file
+  echo "$ASSET_PATHS" | sed "s/^/$1/" | xargs -n 1 -I {} bash -c 'warm_file {}'
 }
 export -f warm_host
 
@@ -21,5 +21,5 @@ info "Started executing at $(date)"
 
 ASSET_PATHS=$(curl -a 'cache warmer' -ksl $ASSET_PATH_MANIFEST_URL)
 HOSTS_LIST=$($HOSTS_COMMAND)
-echo $HOSTS_LIST | xargs -n1 warm_host
+echo $HOSTS_LIST | xargs -n 1 -I {} bash -c 'warm_host'
 
