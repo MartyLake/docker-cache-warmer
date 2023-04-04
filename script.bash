@@ -13,7 +13,7 @@ export -f warm_host
 
 function warm_file {
   debug "Warming file $1"
-  curl -a 'cache warmer' -ksl $1 > /dev/null 2>&1
+  curl --user-agent 'cache warmer' -ksl $1 > /dev/null 2>&1
 }
 export -f warm_file
 
