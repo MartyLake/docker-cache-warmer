@@ -5,15 +5,17 @@ source logging.bash
 debug "Clearing out log"
 cat /dev/null >/job.log
 
-warm_host() {
+function warm_host {
   debug "Warming host $1"
   echo "$ASSET_PATHS" | sed 's/^/$1/' | xargs -n1 warm_file
 }
+export -f warm_host
 
-warm_file() {
+function warm_file {
   debug "Warming file $1"
   curl -a 'cache warmer' -ksl $1 > /dev/null 2>&1
 }
+export -f warm_file
 
 info "Started executing at $(date)"
 
