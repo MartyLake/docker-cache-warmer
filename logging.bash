@@ -2,13 +2,13 @@
 
 debug() {
   if [[ ! -z $DEBUG ]]; then
-    MSG="[docker-cache-warmer] DEBUG $@"
+    MSG="DEBUG $@"
     echo $MSG | tee -a /job.log
   fi
 }
 
 info() {
-  MSG="[docker-cache-warmer] $@"
+  MSG="$@"
   echo $MSG | tee -a /job.log
 }
 
